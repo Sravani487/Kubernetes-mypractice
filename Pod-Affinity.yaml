@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-deployment
+  labels:
+    app: next
+spec:
+  replicas: 6
+  selector:
+    matchLabels:
+      app: next
+  template:
+    metadata:
+      labels:
+        app: next
+    spec:
+      affinity:
+#    podAntiAffinity:
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+          - labelSelector:
+              matchExpressions:
+              - key: app
+                operator: In
+                values:
+                - nginx
+            topologyKey: "kubernetes.io/hostname"
+      containers:
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
