@@ -20,3 +20,18 @@ spec:
   nfs:
     path: /appone
     server: 10.0.0.200
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvcone
+  namespace: dev
+spec:
+  accessModes:
+    - ReadWriteOnce
+  volumeMode: Filesystem
+  resources:
+    requests:
+      storage: 10Gi
+  storageClassName: ""
+  volumeName: pvone
