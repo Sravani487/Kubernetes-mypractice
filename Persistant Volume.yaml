@@ -64,13 +64,13 @@ spec:
       volumes:
         - name: mypd
           persistentVolumeClaim:
-          claimName: pvcone
+            claimName: pvcone
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: nginx-service
-  namespace: test
+  namespace: dev
 spec:
   selector:
     app: nginx
